@@ -2,7 +2,7 @@
 @name           Custom Messenger
 @description    Change Color & Animation
 @author         Rejuiin
-@namespace      www.Shit.com
+@namespace      https://github.com/Rejuiin/Custom-Messenger/blob/main/Main
 @preprocessor   stylus
 @version        1
 @var checkbox   animation       "Off/On Animation"              1
