@@ -1,0 +1,560 @@
+/* ==UserStyle==
+@name           Custom Messenger
+@description    Change Color & Animation
+@author         Rejuiin
+@namespace      www.Shit.com
+@preprocessor   stylus
+@version        1
+@var checkbox   animation       "Off/On Animation"              1
+@var text       sidebarSpeed    "Sidebar speed"                 .5s
+@var text       sidebarDelay    "Sidebar leave delay"           .1s
+@var select     sidebarEase     "Sidebar easing" {
+    "Ease*"         : "ease",
+    "Ease-in"       : "ease-in",
+    "Ease-out"      : "ease-out",
+    "Ease-in-out"   : "ease-in-out"
+}
+@var text       sidebarWidth    "Sidebar width (focused)"       360px
+
+@var select     theme           "Preset color theme" {
+    "Dark*"             : "dark",
+    "Darker"            : "darker",
+    "Gruvbox-Soft"      : "gruvbox-s",
+    "Gruvbox-Medium"    : "gruvbox-m",
+    "Gruvbox-Hard"      : "gruvbox-h",
+    "Nord"              : "nord",
+    "Discord"           : "discord",
+    "Mastodon"          : "mastodon",
+    "Moonlight"         : "moonlight",
+    "Proton"            : "proton",
+    "Breeze"            : "breeze",
+    "Adwaita"           : "adwaita",
+    "Fuchsia"           : "fuchsia-dark",
+    "Custom"            : "custom",
+}
+@var text       fontName        "Custom font"                   default
+@var checkbox   colorScrollbars "Custom scrollbars"             0
+@var checkbox   colorConvos     "Theme conversation colors"     0
+@var checkbox   colorSelect     "Theme text selection"          0
+@var text       pbw             "Primary Border Width"          2px
+@var text       sbw             "Secondary Border Width"        0.5px
+@var color      pbc             "Primary Border Color"          rgba(48, 2, 100, 1)
+@var color      sbc             "Secondary Border Color"        rgba(2, 77, 100, 1)
+@var color      bg-mt           "Message search match color"    #d8df064f
+@var color      sb-bg           "Scrollbar Background"          rgba(4,51, 57, 1)
+@var color      sb-bg2          "Scrollbar Hover"               rgba(0, 223, 255, .64)
+@var color      sb-bg3          "Scrollbar Color"               rgba(241, 0, 255, .86)
+@var color      bg-ac           "Selected chat color"           rgba(1, 15, 125, .64)
+@var color      bg-1            "Custom Background 1"           #0e0017
+@var color      bg-2            "Custom Background 2"           #35368c
+@var color      bg-3            "Custom Background 3"           #333
+@var color      fg-1            "Custom Font Color 1"           #fff
+@var color      fg-2            "Custom Font Color 2"           #aaa
+@var color      ic-1            "Custom icon color"             #05a812
+@var color      ac-1            "Custom accent color"           #ff00f4
+@var color      bg-bb           "Custom sender bubble color"    #00a7ff
+@var text       ic-2            "Custom icon filter"            invert(79%) sepia(2%) saturate(19%) hue-rotate(325deg) brightness(89%) contrast(81%)
+@var text       ac-2            "Custom accent filter"          invert(50%) sepia(94%) saturate(3979%) hue-rotate(183deg) brightness(104%) contrast(103%)
+@var checkbox   darkButtonText  "Custom: Dark button text"      0
+==/UserStyle== */
+
+/*
+    Some icons require CSS filters due to them using images instead of vectors. (eg. three-dot menu, arrows, and payment icons)
+    To make or generate your own CSS filter, you can use any tool that converts color values to CSS filter.
+    Convert ic-1 (icon) and ac-1 (accent color) color values for consistency, or do whatever you want.
+*/
+
+@-moz-document domain("messenger.com") {
+        :root,
+    .__fb-light-mode,
+    .__fb-dark-mode {
+        if theme == dark {
+            --bg-1: #222;
+            --bg-2: #2b2b2b;
+            --bg-3: #333;
+            --fg-1: #fff;
+            --fg-2: #aaa;
+            --ic-1: #aaa;
+            --ac-1: #09f;
+            --bg-bb: #07b;
+            --ic-2: invert(79%) sepia(2%) saturate(19%) hue-rotate(325deg) brightness(89%) contrast(81%);
+            --ac-2: invert(50%) sepia(94%) saturate(3979%) hue-rotate(183deg) brightness(104%) contrast(103%);
+        } else if theme == darker {
+            --bg-1: #111;
+            --bg-2: #1b1b1b;
+            --bg-3: #222;
+            --fg-1: #eee;
+            --fg-2: #999;
+            --ic-1: #999;
+            --ac-1: #06c;
+            --bg-bb: #048;
+            --ic-2: invert(72%) sepia(0%) saturate(6%) hue-rotate(251deg) brightness(86%) contrast(82%);
+            --ac-2: invert(24%) sepia(95%) saturate(1745%) hue-rotate(195deg) brightness(96%) contrast(104%);
+        } else if theme == gruvbox-s {
+            --bg-1: #32302f;
+            --bg-2: #504945;
+            --bg-3: #3c3836;
+            --fg-1: #ebdbb2;
+            --fg-2: #a89984;
+            --ic-1: #a89984;
+            --ac-1: #83a598;
+            --bg-bb: #076678;
+            --ic-2: invert(67%) sepia(5%) saturate(1223%) hue-rotate(356deg) brightness(91%) contrast(91%);
+            --ac-2: invert(77%) sepia(3%) saturate(1992%) hue-rotate(105deg) brightness(82%) contrast(87%);
+        } else if theme == gruvbox-m {
+            --bg-1: #282828;
+            --bg-2: #3c3836;
+            --bg-3: #32302f;
+            --fg-1: #ebdbb2;
+            --fg-2: #a89984;
+            --ic-1: #a89984;
+            --ac-1: #83a598;
+            --bg-bb: #076678;
+            --ic-2: invert(67%) sepia(5%) saturate(1223%) hue-rotate(356deg) brightness(91%) contrast(91%);
+            --ac-2: invert(77%) sepia(3%) saturate(1992%) hue-rotate(105deg) brightness(82%) contrast(87%);
+        } else if theme == gruvbox-h {
+            --bg-1: #1d2021;
+            --bg-2: #282828;
+            --bg-3: #32302f;
+            --fg-1: #ebdbb2;
+            --fg-2: #a89984;
+            --ic-1: #a89984;
+            --ac-1: #83a598;
+            --bg-bb: #076678;
+            --ic-2: invert(67%) sepia(5%) saturate(1223%) hue-rotate(356deg) brightness(91%) contrast(91%);
+            --ac-2: invert(77%) sepia(3%) saturate(1992%) hue-rotate(105deg) brightness(82%) contrast(87%);
+        } else if theme == nord {
+            --bg-1: #2e3440;
+            --bg-2: #364054;
+            --bg-3: #424c60;
+            --fg-1: #eceff4;
+            --fg-2: #d8dee9;
+            --ic-1: #d8dee9;
+            --ac-1: #7ea1cc;
+            --bg-bb: #587ba6;
+            --ic-2: invert(95%) sepia(6%) saturate(837%) hue-rotate(185deg) brightness(95%) contrast(91%);
+            --ac-2: invert(66%) sepia(24%) saturate(566%) hue-rotate(173deg) brightness(91%) contrast(87%);
+        } else if theme == discord {
+            --bg-1: #36393f;
+            --bg-2: #3d414a;
+            --bg-3: #4d515a;
+            --fg-1: #fff;
+            --fg-2: #99aab5;
+            --ic-1: #99aab5;
+            --ac-1: #7289da;
+            --bg-bb: #5c73c5;
+            --ic-2: invert(74%) sepia(8%) saturate(537%) hue-rotate(160deg) brightness(90%) contrast(84%);
+            --ac-2: invert(58%) sepia(26%) saturate(1117%) hue-rotate(192deg) brightness(90%) contrast(89%);
+        } else if theme == mastodon {
+            --bg-1: #191b22;
+            --bg-2: #272b36;
+            --bg-3: #313543;
+            --fg-1: #fff;
+            --fg-2: #9baec8;
+            --ic-1: #9baec8;
+            --ac-1: #2b90d9;
+            --bg-bb: #1074be;
+            --ic-2: invert(73%) sepia(5%) saturate(1409%) hue-rotate(176deg) brightness(96%) contrast(83%);
+            --ac-2: invert(56%) sepia(17%) saturate(2412%) hue-rotate(169deg) brightness(87%) contrast(94%);
+        } else if theme == moonlight {
+            --bg-1: #223;
+            --bg-2: #2b2b3c;
+            --bg-3: #334;
+            --fg-1: #fff;
+            --fg-2: #aab;
+            --ic-1: #aab;
+            --ac-1: #99e;
+            --bg-bb: #66b;
+            --ic-2: invert(77%) sepia(18%) saturate(187%) hue-rotate(201deg) brightness(88%) contrast(86%);
+            --ac-2: invert(62%) sepia(28%) saturate(665%) hue-rotate(202deg) brightness(97%) contrast(93%);
+        } else if theme == proton {
+            --bg-1: #1c1b22;
+            --bg-2: #23222b;
+            --bg-3: #2b2a33;
+            --fg-1: #fff;
+            --fg-2: #aaa;
+            --ic-1: #fbfbfe;
+            --ac-1: #0df;
+            --bg-bb: #126171;
+            --ic-2: invert(97%) sepia(8%) saturate(1873%) hue-rotate(183deg) brightness(107%) contrast(99%);
+            --ac-2: invert(65%) sepia(32%) saturate(2926%) hue-rotate(145deg) brightness(104%) contrast(105%);
+        } else if theme == breeze {
+            --bg-1: #232629;
+            --bg-2: #292d32;
+            --bg-3: #31363b;
+            --fg-1: #fff;
+            --fg-2: #aaa;
+            --ic-1: #aaa;
+            --ac-1: #3daee9;
+            --bg-bb: #224e65;
+            --ic-2: invert(79%) sepia(2%) saturate(19%) hue-rotate(325deg) brightness(89%) contrast(81%);
+            --ac-2: invert(63%) sepia(20%) saturate(1601%) hue-rotate(164deg) brightness(95%) contrast(93%);
+        } else if theme == adwaita {
+            --bg-1: #242424;
+            --bg-2: #2b2b2b;
+            --bg-3: #353535;
+            --fg-1: #f5f5f5;
+            --fg-2: #aaa;
+            --ic-1: #eeeeec;
+            --ac-1: #78aeed;
+            --bg-bb: #1b70c9;
+            --ic-2: invert(97%) sepia(8%) saturate(607%) hue-rotate(352deg) brightness(115%) contrast(87%);
+            --ac-2: invert(63%) sepia(19%) saturate(1049%) hue-rotate(174deg) brightness(103%) contrast(86%);
+        } else if theme == fuchsia-dark {
+            --bg-1: #342434;
+            --bg-2: #3b2b3b;
+            --bg-3: #463546;
+            --fg-1: #fdf;
+            --fg-2: #a8a;
+            --ic-1: #cbc;
+            --ac-1: #c74375;
+            --bg-bb: #7b4b7b;
+            --ic-2: invert(98%) sepia(86%) saturate(359%) hue-rotate(262deg) brightness(81%) contrast(96%);
+            --ac-2: invert(45%) sepia(24%) saturate(7496%) hue-rotate(312deg) brightness(83%) contrast(85%);
+        } else if theme == custom {
+            --bg-1: bg-1;
+            --bg-2: bg-2;
+            --bg-3: bg-3;
+            --fg-1: fg-1;
+            --fg-2: fg-2;
+            --ic-1: ic-1;
+            --ac-1: ac-1;
+            --bg-bb: bg-bb;
+            --ic-2: ic-2;
+            --ac-2: ac-2;
+            
+            if darkButtonText {
+                --fg-bn: var(--bg-1) !important;
+                --ic-bn: invert(0%) !important;
+            }
+        }
+        --messenger-card-background: var(--bg-1) !important;
+        --surface-background: var(--bg-1) !important;
+        --card-background: var(--bg-1) !important;
+        --card-background-flat: var(--bg-3) !important;
+        --popover-background: var(--bg-1) !important;
+        --messenger-reply-background: var(--bg-2) !important;
+        --secondary-button-background: var(--bg-3) !important;
+        --secondary-button-background-floating: var(--bg-2) !important;
+        --primary-deemphasized-button-background: var(--bg-3) !important;
+        --disabled-button-background: var(--bg-2) !important;
+        --wash: var(--bg-3) !important;
+        --web-wash: var(--bg-1) !important;
+        --always-white: var(--bg-3) !important;
+        --comment-footer-background: var(--bg-2) !important;
+        --background-deemphasized: var(--bg-2) !important;
+
+        --primary-button-background: var(--ac-1) !important;
+        --primary-deemphasized-button-text: var(--ac-1) !important;
+        --accent: var(--ac-1) !important;
+        --blue-link: var(--ac-1) !important;
+        --base-blue: var(--ac-1) !important;
+        --base-lemon: bg-mt !important;
+
+        --primary-text: var(--fg-1) !important;
+        --secondary-text: var(--fg-2) !important;
+        --placeholder-text: var(--fg-2) !important;
+        --disabled-text: var(--fg-2) !important;
+        --disabled-button-text: var(--fg-2) !important;
+        --primary-button-text: var(--fg-bn) !important;
+        --secondary-button-text: var(--fg-1) !important;
+
+        --hosted-view-selected-state: bg-ac !important;
+        --primary-deemphasized-button-pressed-overlay: rgba(255, 255, 255, .04) !important;
+        --hover-overlay: rgba(255, 255, 255, .05) !important;
+        --press-overlay: rgba(255, 255, 255, .05) !important;
+        --overlay-alpha-80: rgba(0, 0, 0, .80) !important;
+        --media-inner-border: rgba(255, 255, 255, .1) !important;
+        --shadow-inset: rgba(51, 51, 51, 0.5) !important;
+        --progress-ring-neutral-foreground: rgba(255, 255, 255, .4) !important;
+        --scroll-thumb: rgba(255, 255, 255, .25) !important;
+        --divider: var(--media-inner-border) !important;
+        --always-black: var(--bg-1) !important;
+
+        --primary-icon: var(--ic-1) !important;
+        --secondary-icon: var(--ic-1) !important;
+        --placeholder-icon: var(--ic-1) !important;
+        --disabled-icon: var(--ic-1) !important;
+        --filter-primary-icon: var(--ic-2) !important;
+        --filter-secondary-icon: var(--ic-2) !important;
+        --filter-disabled-icon: var(--ic-2) !important;
+        --filter-placeholder-icon: var(--ic-2) !important;
+        --filter-accent: var(--ac-2) !important;
+        
+        /* Dark button icons for select color themes */
+        --ic-bn: invert(100%);
+        --fg-bn: var(--fg-1);
+        fg-bn-themes = ('gruvbox-s' 'gruvbox-m' 'gruvbox-h' 'nord' 'moonlight' 'proton' 'breeze' 'adwaita')
+        for $i in (0..7) {
+            if theme == fg-bn-themes[$i] {
+                --ic-bn: invert(0%);
+                --fg-bn: var(--bg-1);
+            }
+        }
+        
+        /* Color scheme support */
+        @supports (color-scheme: dark) {
+            color-scheme: dark;
+        }
+    }
+    if fontName != default {
+        #facebook ._-kb div,
+        #facebook ._-kb span {
+            font-family: fontName;
+        }
+    }
+    if colorConvos {
+        .cxgpxx05.d1544ag0.sj5x9vvc.tw6a2znq.l9j0dhe7.ni8dbmo4.stjgntxs.e72ty7fz:not([style*="var(--"]),
+        .buofh1pr.j83agx80.bp9cbjyn.i1fnvgqd.ni8dbmo4.stjgntxs.l9j0dhe7:not([style*="var(--"]) {
+            background-color: var(--bg-bb) !important;
+        }
+        svg[fill],
+        path[fill],
+        rect[fill]:not(.qbubdy2e svg rect):not([fill="none"]) {
+            fill: var(--ac-1) !important;
+        }
+        .s9lmpwuu g {
+            stroke: var(--ac-1) !important;
+        }
+        .f8ljpb73[role="button"] {
+            background-color: var(--ac-1) !important;
+        }
+        .f8ljpb73[role="button"] svg path {
+            fill: var(--fg-bn) !important;
+        }
+        .q2y6ezfg[aria-label] svg path[fill] {
+            fill: var(--bg-bb) !important;
+        }
+        .fv0vnmcu.ggphbty4.oeo4gz9l.chsygg5i.q2y6ezfg.pdihbav5.fo8ltl2p.b8f6b1oh.q0b78ich.j83agx80.taijpn5t.bp9cbjyn.lquwwe9x.e9vueds3.lrazzd5p.abiwlrkh.l9j0dhe7 {
+            color: var(--bg-1) !important;
+        }
+        .ljqsnud1 {
+            color: var(--fg-1) !important;
+        }
+    } else {
+        .ljqsnud1 {
+            color: #fff !important;
+        }
+    }
+    if colorSelect {
+        ::selection {
+            background-color: var(--ac-1);
+        }
+    }
+    /* Icon colors */
+    svg[fill="currentColor"]:not(.py34i1dx),
+    path[fill*="var(--"],
+    path[fill="black"] {
+        fill: var(--primary-icon) !important;
+    }
+    .eb18blue:not([style*="20px"]) {
+        filter: var(--ic-bn);
+    }
+    /* Toggle switch */
+    .q2y6ezfg {
+        background-color: var(--fg-1);
+    }
+    /* Close search button */
+    .q2y6ezfg.__fb-light-mode.tv7at329 {
+        background-color: var(--secondary-button-background) !important;
+    }
+    /* Audio message */
+    .q2y6ezfg[aria-label] svg path:not([fill]) {
+        fill: var(--bg-3) !important;
+    }
+    /* Video progress and volume bars */
+    .br3lixkv {
+        background-color: var(--ac-1);
+    }
+    /* Hidden images */
+    .j9guq4sk {
+        background-color: var(--bg-2);
+    }
+    /* New conversation */
+    .m8fgq6di {
+        background-color: var(--bg-3);
+    }
+    /* Join button */
+    .tw6a2znq.tdjehn4e.tv7at329 {
+        background-color: rgba(255, 255, 255, .1);
+    }
+    /* Loading spinner */
+    path[style="stroke: rgb(24\, 119\, 242);"] {
+        stroke: var(--ac-1) !important;
+        fill: none !important;
+    }
+    rect[style="stroke: rgb(204\, 208\, 213);"] {
+        stroke: var(--bg-2) !important;
+    }
+    /* Conversation loading bar */
+    .dya21fl7 {
+        background-color: var(--bg-2);
+    }
+    .paclfcx5 {
+        background-color: var(--ac-1);
+    }
+    
+    /* Scroll Bar */
+    .pwoa4pd7.mkhogb32.n7fi1qx3.datstx6m.b5wmifdl.pmk7jnqg.kr520xx4.qgmjvhk0.art1omkt.nw2je8n7.hhz5lgdu.pyaxyem1 {
+        background-color: sb-bg;
+    }
+    .rq0escxv.mkhogb32.n7fi1qx3.b5wmifdl.jb3vyjys.ph5uu5jm.qt6c0cv9.b3onmgus.hzruof5a.pmk7jnqg.kr520xx4.enuw37q7.dpja2al7.art1omkt.nw2je8n7.hhz5lgdu{
+        background-color: sb-bg2;
+    }
+    .oj68ptkr.jk6sbkaj.kdgqqoy6.ihh4hy1g.qttc61fc.datstx6m.k4urcfbm {
+        background-color: sb-bg3;
+    }
+    if colorScrollbars {
+        /* Firefox */
+        html,
+        div {
+            scrollbar-width: thin;
+            scrollbar-color: sb-bg3 transparent;
+        }
+        /* Chromium-based browsers */
+        ::-webkit-scrollbar {
+            background-color: sb-bg;
+            width: 14px;
+        }
+        ::-webkit-scrollbar:hover {
+            background-color: sb-bg2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: sb-bg3;
+            background-clip: padding-box;
+            border: 3px solid transparent;
+            border-radius: 999px;
+        }
+        /* Buttons */
+        ::-webkit-scrollbar-button:single-button {
+            background-color: sb-bg;
+            display: block;
+            border-style: solid;
+            height: 13px;
+            width: 16px;
+        }
+        /* Up */
+        ::-webkit-scrollbar-button:single-button:vertical:decrement {
+            border-width: 0 10px 10px 10px;
+            border-color: rgb(0, 0, 0) transparent #555555 transparent;
+        }
+
+        ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+            border-color: transparent transparent #777777 transparent;
+        }
+        /* Down */
+        ::-webkit-scrollbar-button:single-button:vertical:increment {
+            border-width: 10px 10px 0 10px;
+            border-color: #555555 transparent transparent transparent;
+        }
+
+        ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+            border-color: #777777 transparent transparent transparent;
+        }
+    }
+
+    /*Secandary Borders*/
+    .rq0escxv.l9j0dhe7.du4w35lb {
+        border-width: sbw;
+        border-radius: 20px;
+        border-color: sbc;
+    }
+
+    
+    /*Primary Porders*/
+    .ns9esd28 {
+        border-left: pbw solid pbc;
+        border-right: pbw solid pbc;
+        border-bottom: pbw solid pbc;
+    }
+    .k4urcfbm {
+        border-width: 3px;
+        border-color: sbc;
+    }
+    .fmqxjp7s {
+        height: 40px;
+    }
+    .hop1g133 {
+        border-top: pbw solid pbc;
+        border-left: pbw solid pbc;
+        border-right: pbw solid pbc;
+        border-bottom: pbw solid pbc;
+    }
+    .t6p9ggj4 {
+        border-top: pbw solid pbc;
+        border-left: pbw solid pbc;
+        border-right: pbw solid pbc;
+        border-bottom: pbw solid pbc;
+    }
+        
+        
+    /**                  Side bar Animation                */
+    
+    if animation{
+        /* Header */
+        .jktsbyx5.hv4rvrfc.osnr6wyh.dati1w0a.ahb00how {
+            opacity: 0;
+            height: 0;
+            padding: 0 16px;
+            transition: sidebarSpeed;
+        }
+        /* Search */
+        .rq0escxv.l9j0dhe7.du4w35lb.hv4rvrfc.dati1w0a.f10w8fjw.ipjc6fyt {
+            opacity: 0;
+            height: 0;
+            transition: sidebarSpeed;
+        }
+        /* Text Header */
+        .o36gj0jk .gmql0nx0.l94mrbxd.p1ri9a11.lzcic4wl.d2edcug0.hpfvmrgz {
+            width: 150px;
+        }
+        /* Unread Message Indicator */
+        .o36gj0jk .is6700om[data-visualcompletion="ignore"] {
+            position: relative;
+            right: 83px;
+            transition-delay: sidebarDelay;
+        }
+        /* Notification bell */
+        .o36gj0jk .bp9cbjyn.j83agx80.owycx6da svg,
+        .o36gj0jk .bp9cbjyn.j83agx80.owycx6da .xthkpp0z {
+            display: none;
+        }
+        /* Hide contents (workaround) */
+        .rq0escxv.l9j0dhe7.du4w35lb.j83agx80.buofh1pr.g5gj957u.hpfvmrgz.i1fnvgqd.bp9cbjyn.lhclo0ds.btwxx1t3.mg4g778l {
+            overflow: hidden;
+        }
+        /* Sidebar (not focused) */
+        .o36gj0jk {
+            width: 80px;
+            min-width: 80px;
+            transition: width sidebarSpeed sidebarEase;
+            transition-delay: sidebarDelay;
+        }
+        /* Sidebar (focused) */
+        .o36gj0jk:hover {
+            width: sidebarWidth;
+            transition-delay: 0s;
+        }
+        /* Header (focused) */
+        .o36gj0jk:hover .jktsbyx5.hv4rvrfc.osnr6wyh.dati1w0a.ahb00how {
+            opacity: 1;
+            height: auto;
+            padding: 10px 16px;
+        }
+        /* Search (focused) */
+        .o36gj0jk:hover .rq0escxv.l9j0dhe7.du4w35lb.hv4rvrfc.dati1w0a.f10w8fjw.ipjc6fyt {
+            opacity: 1;
+            height: auto;
+        }
+        /* Unread Message Indicator (focused) */
+        .o36gj0jk:hover .is6700om[data-visualcompletion="ignore"] {
+            right: 0;
+            transition-delay: 0s;
+        }
+        /* Notification bell (focused) */
+        .o36gj0jk:hover .bp9cbjyn.j83agx80.owycx6da svg,
+        .o36gj0jk:hover .bp9cbjyn.j83agx80.owycx6da .xthkpp0z {
+            display: block;
+        }
+    }
+}
